@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA AI Co-Pilot</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Poppins;
+  background: radial-gradient(circle at top, #2a1f5c, #120a2a, #080414);
+  color:#fff;
+}
+
+nav{
+  position:fixed;top:0;width:100%;
+  display:flex;justify-content:space-between;
+  padding:15px 40px;
+  background:rgba(0,0,0,0.6);
+}
+nav a{color:#ccc;text-decoration:none;margin:0 10px}
+nav a:hover{color:#fff}
+
+.hero{
+  padding:140px 20px 80px;
+  text-align:center;
+}
+.hero h1{font-size:56px;font-weight:800}
+.hero p{max-width:600px;margin:auto}
+
+.hero-hook{
+  margin:30px auto;
+  padding:15px;
+  background:rgba(255,200,0,0.1);
+  border-radius:10px;
+  max-width:600px;
+}
+
+.btn{
+  background:linear-gradient(90deg,#F5A623,#EC4899);
+  padding:15px 30px;
+  border-radius:30px;
+  border:none;
+  color:white;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.video{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.section{
+  padding:80px 20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.modal-box{
+  background:#1a1333;
+  padding:30px;
+  border-radius:20px;
+  width:90%;
+  max-width:500px;
+}
+input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:8px;
+  border:none;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div><b>AURA</b></div>
+  <div>
+    <a href="#problem">Why AURA</a>
+    <a href="#platform">Platform</a>
+    <a href="#features">Features</a>
+    <a href="#pilot">Free Pilot</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Supercharge Your Sales Team</h1>
+  <p>AI-powered showroom assistant for instant answers, better pitches, and faster closures.</p>
+
+  <div class="hero-hook">
+    What if your weakest advisor performed like your best closer — every day?
+  </div>
+
+  <button class="btn" onclick="openModal()">Start Free Pilot</button>
+</section>
+
+<section class="video">
+  <h2>See AURA in Action</h2>
+  <iframe width="80%" height="400"
+    src="https://www.youtube.com/embed/GSnWz-nLRAI"
+    frameborder="0" allowfullscreen>
+  </iframe>
+</section>
+
+<section id="problem" class="section">
+  <h2>Why AURA</h2>
+  <p>Advisors lose deals due to lack of instant answers and competitor handling.</p>
+</section>
+
+<section id="platform" class="section">
+  <h2>Platform</h2>
+  <p>Real-time AI co-pilot for showroom sales teams.</p>
+</section>
+
+<section id="features" class="section">
+  <h2>Features</h2>
+  <p>Battle cards, AI chat, training engine.</p>
+</section>
+
+<section id="pilot" class="section">
+  <h2>Free Pilot</h2>
+  <button class="btn" onclick="openModal()">Claim Now</button>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3>Claim Free Pilot</h3>
+
+    <input id="name" placeholder="Name">
+    <input id="designation" placeholder="Designation">
+    <input id="showroom" placeholder="Showroom Name">
+    <input id="city" placeholder="City">
+    <input id="email" placeholder="Work Email">
+    <input id="phone" placeholder="Phone Number">
+
+    <button class="btn" onclick="submitForm()">Submit</button>
+    <button onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+function openModal(){
+  document.getElementById("modal").style.display="flex";
+}
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+async function submitForm(){
+
+  const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse";
+
+  const data = new FormData();
+  data.append("entry.1158063433", document.getElementById("name").value);
+  data.append("entry.476107339", document.getElementById("designation").value);
+  data.append("entry.1013057279", document.getElementById("showroom").value);
+  data.append("entry.1200513611", document.getElementById("city").value);
+  data.append("entry.1949582725", document.getElementById("email").value);
+  data.append("entry.1618563540", document.getElementById("phone").value);
+
+  await fetch(FORM_URL,{
+    method:"POST",
+    mode:"no-cors",
+    body:data
+  });
+
+  alert("✅ Submitted successfully!");
+  closeModal();
+}
+</script>
+
+</body>
+</html>
