@@ -76,19 +76,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:16px 52px;display:fl
 .video-title{font-size:clamp(22px,3.5vw,36px);font-weight:800;color:var(--txt);margin-bottom:8px;letter-spacing:-.02em;line-height:1.15}
 .video-title .g{background:var(--warm1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .video-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.65}
-.video-frame-wrap{display:none}
-.video-thumb-wrap{position:relative;display:block;width:100%;border-radius:20px;overflow:hidden;cursor:pointer;text-decoration:none;box-shadow:0 0 0 1px rgba(245,166,35,.25),0 24px 80px rgba(245,166,35,.18),0 0 60px rgba(124,58,237,.15);transition:transform .3s,box-shadow .3s}
-.video-thumb-wrap:hover{transform:scale(1.012);box-shadow:0 0 0 2px rgba(245,166,35,.5),0 32px 100px rgba(245,166,35,.28)}
-.video-thumb-wrap::before{content:'';position:absolute;inset:-3px;border-radius:23px;background:var(--warm1);z-index:-1;opacity:.55;filter:blur(10px)}
-.video-thumb-inner{position:relative;padding-bottom:56.25%;background:#0d0b1a;border-radius:18px;overflow:hidden}
-.video-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;filter:brightness(.8)}
-.video-thumb-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,6,24,.5),rgba(124,58,237,.2));border-radius:18px}
-.video-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:rgba(245,166,35,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 40px rgba(245,166,35,.6),0 0 0 8px rgba(245,166,35,.15);transition:transform .25s,background .25s}
-.video-thumb-wrap:hover .video-play-btn{transform:translate(-50%,-50%) scale(1.13);background:#fff}
-.video-play-btn svg{width:30px;height:30px;fill:#0A0618;margin-left:5px;transition:fill .25s}
-.video-thumb-wrap:hover .video-play-btn svg{fill:var(--gold-d)}
-.video-watch-label{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(245,166,35,.93);color:#0A0618;font-size:12px;font-weight:700;padding:7px 20px;border-radius:50px;white-space:nowrap;opacity:0;transition:opacity .25s;letter-spacing:.03em}
-.video-thumb-wrap:hover .video-watch-label{opacity:1}
+.video-frame-wrap{position:relative;width:100%;border-radius:20px;overflow:hidden;box-shadow:0 0 0 1px rgba(245,166,35,.25),0 24px 80px rgba(245,166,35,.18),0 0 60px rgba(124,58,237,.15)}
+.video-frame-wrap::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:var(--warm1);z-index:-1;opacity:.5;filter:blur(8px)}
+.video-responsive{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:18px;background:#000}
+.video-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:18px}
 .video-nudge{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:500;color:var(--muted)}
 .nudge-arrow{width:28px;height:28px;border-radius:50%;border:1px solid rgba(245,166,35,.3);display:flex;align-items:center;justify-content:center;font-size:13px;animation:bounce 1.8s infinite}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
@@ -340,19 +331,11 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
     <div class="video-label">▶ Watch the Explainer</div>
     <h2 class="video-title">See <span class="g">AURA in action</span> — 2 minutes<br>that could change how your team sells</h2>
     <p class="video-sub">Watch how AURA turns an ordinary sales floor into a high-conversion selling machine — one conversation at a time.</p>
-    <a href="https://youtu.be/GSnWz-nLRAI" target="_blank" rel="noopener" class="video-thumb-wrap" aria-label="Watch AURA explainer on YouTube">
-      <div class="video-thumb-inner">
-        <img class="video-thumb-img"
-             src="https://img.youtube.com/vi/GSnWz-nLRAI/maxresdefault.jpg"
-             onerror="this.src='https://img.youtube.com/vi/GSnWz-nLRAI/hqdefault.jpg'"
-             alt="AURA AI Co-Pilot Explainer"/>
-        <div class="video-thumb-overlay"></div>
-        <div class="video-play-btn">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="video-watch-label">▶ Watch on YouTube</div>
+    <div class="video-frame-wrap">
+      <div class="video-responsive">
+        <iframe src="https://www.youtube.com/embed/GSnWz-nLRAI?rel=0&modestbranding=1&color=white" title="AURA AI Co-Pilot Explainer" allowfullscreen loading="lazy"></iframe>
       </div>
-    </a>
+    </div>
     <div class="video-nudge">
       <div class="nudge-arrow">↓</div>
       <span>Scroll down to see everything AURA does for your team</span>
@@ -611,48 +594,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 //   5. Replace GOOGLE_FORM_ID with your form's ID from the URL
 //      (the part between /d/ and /viewform)
 
-// ─── GOOGLE FORM SUBMISSION via hidden iframe + form POST (CORS-safe) ───
+// ─── GOOGLE FORM SUBMISSION (6 fields only) ───
 function submitToGoogleForm(data) {
   const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse";
-
-  // Create a hidden iframe to absorb the redirect response
-  const iframe = document.createElement('iframe');
-  iframe.name = 'gform-iframe';
-  iframe.style.cssText = 'display:none;width:0;height:0;border:none;position:absolute;';
-  document.body.appendChild(iframe);
-
-  // Build a hidden HTML form targeting the iframe
-  const form = document.createElement('form');
-  form.method  = 'POST';
-  form.action  = FORM_URL;
-  form.target  = 'gform-iframe';
-  form.style.cssText = 'display:none;position:absolute;';
-
-  const fields = {
-    'entry.1158063433': data.name,
-    'entry.476107339':  data.role,
-    'entry.1013057279': data.showroom,
-    'entry.1200513611': data.city,
-    'entry.1949582725': data.email,
-    'entry.1618563540': data.phone
-  };
-
-  Object.entries(fields).forEach(([name, value]) => {
-    const input = document.createElement('input');
-    input.type  = 'hidden';
-    input.name  = name;
-    input.value = value || '';
-    form.appendChild(input);
-  });
-
-  document.body.appendChild(form);
-  form.submit(); // POST directly — iframe absorbs the redirect, no CORS error
-
-  // Clean up after submission
-  setTimeout(() => {
-    document.body.removeChild(form);
-    document.body.removeChild(iframe);
-  }, 5000);
+  const payload = new FormData();
+  payload.append("entry.1158063433", data.name);
+  payload.append("entry.476107339",  data.role);
+  payload.append("entry.1013057279", data.showroom);
+  payload.append("entry.1200513611", data.city);
+  payload.append("entry.1949582725", data.email);
+  payload.append("entry.1618563540", data.phone);
+  fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: payload })
+    .catch(() => {}); // silently ignore CORS noise — submission still goes through
 }
 
 // ─── FORM SUBMIT ───
