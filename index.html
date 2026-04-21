@@ -604,14 +604,14 @@ function submitToGoogleForm(data) {
   form.style.cssText = 'display:none;position:absolute;left:-9999px;top:-9999px;';
 
   const fields = {
-    'entry.1158063433': data.name,      // Name
-    'entry.476107339':  data.role,      // Designation
-    'entry.1013057279': data.showroom,  // Showroom Name
-    'entry.1798470370': data.channel,   // Channel
-    'entry.1200513611': data.city,      // City
-    'entry.1949582725': data.email,     // Work Email
-    'entry.1618563540': data.phone      // Phone Number
-  };
+  'entry.1158063433': data.name,
+  'entry.476107339':  data.showroom,     // ✅ FIXED
+  'entry.1013057279': data.city,         // ✅ FIXED
+  'entry.1200513611': data.email,        // ✅ FIXED
+  'entry.1949582725': data.phone,        // ✅ FIXED
+  'entry.1618563540': data.role,         // ✅ FIXED
+  'entry.1798470370': data.channel       // ✅ already correct
+};
 
   Object.entries(fields).forEach(([name, value]) => {
     const inp = document.createElement('input');
