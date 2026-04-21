@@ -69,17 +69,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:16px 52px;display:fl
 .hero-stat-num{font-size:36px;font-weight:800;line-height:1;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-stat-lbl{font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-top:6px;line-height:1.5}
 
-/* ── VIDEO SECTION ── */
+/* VIDEO SECTION */
 .video-section{position:relative;z-index:1;padding:0 24px 80px;background:linear-gradient(to bottom,rgba(10,6,24,0) 0%,rgba(10,6,24,1) 12%)}
 .video-inner{max-width:860px;margin:0 auto;text-align:center}
 .video-label{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:50px;padding:7px 18px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-l);margin-bottom:20px}
 .video-title{font-size:clamp(22px,3.5vw,36px);font-weight:800;color:var(--txt);margin-bottom:8px;letter-spacing:-.02em;line-height:1.15}
 .video-title .g{background:var(--warm1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .video-sub{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.65}
-.video-frame-wrap{position:relative;width:100%;border-radius:20px;overflow:hidden;box-shadow:0 0 0 1px rgba(245,166,35,.25),0 24px 80px rgba(245,166,35,.18),0 0 60px rgba(124,58,237,.15)}
-.video-frame-wrap::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:var(--warm1);z-index:-1;opacity:.5;filter:blur(8px)}
-.video-responsive{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:18px;background:#000}
-.video-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:18px}
+.video-thumb-wrap{position:relative;display:block;width:100%;border-radius:20px;overflow:hidden;cursor:pointer;text-decoration:none;box-shadow:0 0 0 1px rgba(245,166,35,.25),0 24px 80px rgba(245,166,35,.18),0 0 60px rgba(124,58,237,.15);transition:transform .3s,box-shadow .3s}
+.video-thumb-wrap:hover{transform:scale(1.012);box-shadow:0 0 0 2px rgba(245,166,35,.5),0 32px 100px rgba(245,166,35,.28)}
+.video-thumb-wrap::before{content:'';position:absolute;inset:-3px;border-radius:23px;background:var(--warm1);z-index:-1;opacity:.55;filter:blur(10px)}
+.video-thumb-inner{position:relative;padding-bottom:56.25%;background:#0d0b1a;border-radius:18px;overflow:hidden}
+.video-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;filter:brightness(.8)}
+.video-thumb-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,6,24,.5),rgba(124,58,237,.2));border-radius:18px}
+.video-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:rgba(245,166,35,.95);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 40px rgba(245,166,35,.6),0 0 0 8px rgba(245,166,35,.15);transition:transform .25s,background .25s}
+.video-thumb-wrap:hover .video-play-btn{transform:translate(-50%,-50%) scale(1.13);background:#fff}
+.video-play-btn svg{width:30px;height:30px;fill:#0A0618;margin-left:5px;transition:fill .25s}
+.video-thumb-wrap:hover .video-play-btn svg{fill:var(--gold-d)}
+.video-watch-label{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:rgba(245,166,35,.93);color:#0A0618;font-size:12px;font-weight:700;padding:7px 20px;border-radius:50px;white-space:nowrap;opacity:0;transition:opacity .25s;letter-spacing:.03em}
+.video-thumb-wrap:hover .video-watch-label{opacity:1}
 .video-nudge{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:500;color:var(--muted)}
 .nudge-arrow{width:28px;height:28px;border-radius:50%;border:1px solid rgba(245,166,35,.3);display:flex;align-items:center;justify-content:center;font-size:13px;animation:bounce 1.8s infinite}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
@@ -214,7 +222,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:16px 52px;display:fl
 .urgency{background:linear-gradient(90deg,#92400E,#B45309,#D97706);padding:14px 52px;text-align:center;font-size:13px;font-weight:600;color:#fff;letter-spacing:.02em;position:relative;z-index:1}
 .urgency span{color:#FDE68A}
 
-/* ── MODAL — viewport-safe, compact ── */
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;display:none;align-items:center;justify-content:center;padding:12px;backdrop-filter:blur(8px);overflow-y:auto}
 .modal-overlay.open{display:flex}
 .modal{background:var(--card2);border:1px solid rgba(245,166,35,.3);border-radius:20px;padding:28px 24px 22px;max-width:500px;width:100%;position:relative;animation:modalIn .3s ease;box-shadow:0 0 60px rgba(245,166,35,.15);max-height:calc(100vh - 24px);overflow-y:auto;margin:auto}
@@ -238,8 +246,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:16px 52px;display:fl
 .form-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,166,35,.5)}
 .form-submit:disabled{opacity:.6;cursor:not-allowed}
 .form-note{font-size:10px;color:var(--muted);text-align:center;margin-top:8px;line-height:1.5}
-
-/* success */
 .form-success{display:none;text-align:center;padding:16px 0}
 .success-icon{font-size:52px;margin-bottom:12px;animation:popIn .4s ease}
 @keyframes popIn{from{transform:scale(.4)}to{transform:scale(1)}}
@@ -253,7 +259,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
 .foot-links a{font-size:12px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;cursor:pointer}
 .foot-links a:hover{color:var(--txt)}
 .foot-note{font-size:11px;color:var(--dim)}
-
 .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -296,7 +301,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   <button class="nav-cta" onclick="openModal()">Claim Free Pilot →</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -325,17 +329,24 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </section>
 
-<!-- ── EXPLAINER VIDEO — just below the hero ── -->
 <div class="video-section reveal">
   <div class="video-inner">
     <div class="video-label">▶ Watch the Explainer</div>
     <h2 class="video-title">See <span class="g">AURA in action</span> — 2 minutes<br>that could change how your team sells</h2>
     <p class="video-sub">Watch how AURA turns an ordinary sales floor into a high-conversion selling machine — one conversation at a time.</p>
-    <div class="video-frame-wrap">
-      <div class="video-responsive">
-        <iframe src="https://www.youtube.com/embed/GSnWz-nLRAI?rel=0&modestbranding=1&color=white" title="AURA AI Co-Pilot Explainer" allowfullscreen loading="lazy"></iframe>
+    <a href="https://youtu.be/GSnWz-nLRAI" target="_blank" rel="noopener" class="video-thumb-wrap" aria-label="Watch AURA explainer on YouTube">
+      <div class="video-thumb-inner">
+        <img class="video-thumb-img"
+             src="https://img.youtube.com/vi/GSnWz-nLRAI/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/GSnWz-nLRAI/hqdefault.jpg'"
+             alt="AURA AI Co-Pilot Explainer"/>
+        <div class="video-thumb-overlay"></div>
+        <div class="video-play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-watch-label">▶ Watch on YouTube</div>
       </div>
-    </div>
+    </a>
     <div class="video-nudge">
       <div class="nudge-arrow">↓</div>
       <span>Scroll down to see everything AURA does for your team</span>
@@ -343,7 +354,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </div>
 
-<!-- HOOK BAND -->
 <div class="hook-band reveal">
   <div class="hook-inner">
     <div class="hook-num">₹∞</div>
@@ -359,7 +369,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </div>
 
-<!-- WHY AURA -->
 <div id="sec-problem"></div>
 <section class="prob-wrap">
   <div class="prob-inner reveal">
@@ -374,7 +383,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </section>
 
-<!-- PLATFORM -->
 <div id="sec-platform"></div>
 <section class="vp-wrap">
   <div class="vp-inner reveal">
@@ -428,7 +436,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </section>
 
-<!-- FEATURES -->
 <div id="sec-features"></div>
 <section>
   <div class="section reveal">
@@ -445,7 +452,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <div id="sec-how"></div>
 <section class="hiw-wrap">
   <div class="hiw-inner reveal">
@@ -460,7 +466,6 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   </div>
 </section>
 
-<!-- FREE PILOT -->
 <div id="sec-pilot"></div>
 <section class="pilot-band">
   <div class="pilot-bg"></div>
@@ -494,12 +499,10 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
   <div class="foot-note">© 2026 AURA AI Co-Pilot · Executive MBA Project · Early Adopter Edition</div>
 </footer>
 
-<!-- ── MODAL ── -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeOnOverlay(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
-
-    <!-- FORM -->
     <div id="modal-form">
       <div class="modal-eyebrow">Early Adopter Pilot · Free for 90 days</div>
       <h3 class="modal-title">Claim your free AURA pilot 🚀</h3>
@@ -537,24 +540,20 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
       <button class="form-submit" id="submit-btn" onclick="submitForm()">🚀 Claim My Free 90-Day Pilot</button>
       <p class="form-note">No credit card · No IT setup needed · We'll reach out on WhatsApp within 24 hours</p>
     </div>
-
-    <!-- SUCCESS -->
     <div class="form-success" id="modal-success">
       <div class="success-icon">🎉</div>
       <div class="success-title">You're in!</div>
-      <p class="success-msg">
-        Welcome to the AURA early adopter family!<br>
-        We'll reach out on WhatsApp within 24 hours to confirm your onboarding slot and get AURA live on your floor.
-      </p>
-      <div class="success-highlight">
-        ✅ Your team is about to sell smarter,<br>close faster, and grow stronger — every day.
-      </div>
+      <p class="success-msg">Welcome to the AURA early adopter family!<br>We'll reach out on WhatsApp within 24 hours to confirm your onboarding slot and get AURA live on your floor.</p>
+      <div class="success-highlight">✅ Your team is about to sell smarter,<br>close faster, and grow stronger — every day.</div>
     </div>
   </div>
 </div>
 
+<!-- Hidden iframe to absorb Google Form POST response (prevents page redirect) -->
+<iframe name="gform-hidden" style="display:none;width:0;height:0;border:none;position:absolute;left:-9999px;"></iframe>
+
 <script>
-// ─── SMOOTH SCROLL (renamed to avoid window.scrollTo conflict) ───
+// ─── SMOOTH SCROLL ───
 function goTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -570,10 +569,10 @@ const obs = new IntersectionObserver(
 );
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ─── MODAL ───
+// ─── MODAL OPEN / CLOSE ───
 function openModal() {
   document.getElementById('modal').classList.add('open');
-  document.getElementById('modal-form').style.display = 'block';
+  document.getElementById('modal-form').style.display  = 'block';
   document.getElementById('modal-success').style.display = 'none';
   document.body.style.overflow = 'hidden';
 }
@@ -584,68 +583,110 @@ function closeModal() {
 function closeOnOverlay(e) { if (e.target === document.getElementById('modal')) closeModal(); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ─── GOOGLE FORM SUBMISSION ───
-// ⚠️  SETUP INSTRUCTIONS (replace the two values below):
-//   1. Create a Google Form with these fields (in order):
-//      Name, Designation, Showroom Name, Channel, City, Email, WhatsApp, Team Size
-//   2. Open the form, click the ⋮ menu → "Get pre-filled link"
-//   3. Fill dummy values, click "Get link", copy the URL
-//   4. From that URL, extract each "entry.XXXXXXXXX" and paste below
-//   5. Replace GOOGLE_FORM_ID with your form's ID from the URL
-//      (the part between /d/ and /viewform)
+// ─── RESET FORM FIELDS ───
+function resetForm() {
+  ['f-name','f-showroom','f-city','f-email','f-phone'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.style.borderColor = '';
+    el.style.boxShadow   = '';
+  });
+  ['f-role','f-channel','f-team'].forEach(id => {
+    document.getElementById(id).selectedIndex = 0;
+  });
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = false;
+  btn.innerHTML = '🚀 Claim My Free 90-Day Pilot';
+}
 
-// ─── GOOGLE FORM SUBMISSION (6 fields only) ───
+// ─── GOOGLE FORM SUBMISSION via hidden iframe + native form POST ───
+// Method: build a real <form> targeting the persistent hidden iframe.
+// This sends application/x-www-form-urlencoded (what Google Forms requires)
+// and absorbs the redirect response inside the iframe — no CORS error, no page navigation.
 function submitToGoogleForm(data) {
-  const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse";
-  const payload = new FormData();
-  payload.append("entry.1158063433", data.name);
-  payload.append("entry.476107339",  data.role);
-  payload.append("entry.1013057279", data.showroom);
-  payload.append("entry.1200513611", data.city);
-  payload.append("entry.1949582725", data.email);
-  payload.append("entry.1618563540", data.phone);
-  fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: payload })
-    .catch(() => {}); // silently ignore CORS noise — submission still goes through
+  const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse';
+
+  const form = document.createElement('form');
+  form.method  = 'POST';
+  form.action  = FORM_URL;
+  form.target  = 'gform-hidden'; // target the persistent hidden iframe
+  form.style.cssText = 'display:none;position:absolute;left:-9999px;';
+
+  // Exact entry IDs mapped to the 6 fields
+  const fields = {
+    'entry.1158063433': data.name,      // Name
+    'entry.476107339':  data.role,      // Designation
+    'entry.1013057279': data.showroom,  // Showroom Name
+    'entry.1200513611': data.city,      // City
+    'entry.1949582725': data.email,     // Work Email
+    'entry.1618563540': data.phone      // Phone Number
+  };
+
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement('input');
+    input.type  = 'hidden';
+    input.name  = name;
+    input.value = value || '';
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+
+  // Remove the temporary form element after submission
+  setTimeout(() => { document.body.removeChild(form); }, 3000);
 }
 
 // ─── FORM SUBMIT ───
 function submitForm() {
-  const req = ['f-name','f-role','f-showroom','f-channel','f-city','f-email','f-phone'];
-  let ok = true;
-  req.forEach(id => {
+  const required = ['f-name','f-role','f-showroom','f-channel','f-city','f-email','f-phone'];
+  let allValid = true;
+
+  required.forEach(id => {
     const el = document.getElementById(id);
     if (!el.value.trim()) {
       el.style.borderColor = '#EF4444';
       el.style.boxShadow   = '0 0 0 2px rgba(239,68,68,.15)';
-      ok = false;
+      allValid = false;
     } else {
       el.style.borderColor = '';
       el.style.boxShadow   = '';
     }
   });
-  if (!ok) return;
 
+  if (!allValid) return;
+
+  // Collect values
   const data = {
     name:     document.getElementById('f-name').value.trim(),
     role:     document.getElementById('f-role').value,
     showroom: document.getElementById('f-showroom').value.trim(),
-    channel:  document.getElementById('f-channel').value,
     city:     document.getElementById('f-city').value.trim(),
     email:    document.getElementById('f-email').value.trim(),
-    phone:    document.getElementById('f-phone').value.trim(),
-    team:     document.getElementById('f-team').value || 'Not specified'
+    phone:    document.getElementById('f-phone').value.trim()
   };
 
+  // Disable button and show spinner
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Submitting…';
 
-  // Submit to Google Form (fire-and-forget)
+  // POST to Google Form via hidden iframe
   submitToGoogleForm(data);
 
-  // Show success screen immediately
-  document.getElementById('modal-form').style.display = 'none';
-  document.getElementById('modal-success').style.display = 'block';
+  // Show success screen after brief delay (allows form.submit() to fire)
+  setTimeout(() => {
+    document.getElementById('modal-form').style.display    = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+
+    // Auto-reset form fields after showing success for 4 seconds,
+    // then restore the form view (ready for the next visitor)
+    setTimeout(() => {
+      resetForm();
+      document.getElementById('modal-form').style.display    = 'block';
+      document.getElementById('modal-success').style.display = 'none';
+    }, 4000);
+  }, 600);
 }
 
 // ─── DEMO TABS ───
