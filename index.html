@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-33LYSJYRTG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-33LYSJYRTG');
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AURA AI Co-Pilot — The Future of Showroom Selling</title>
@@ -24,7 +34,8 @@ body{background:#0A0618;color:var(--txt);overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.35}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:16px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,6,24,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,166,35,0.18)}
-.nav-logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;letter-spacing:.06em;background:var(--warm1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:8px}
+.nav-logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;letter-spacing:.06em;background:var(--warm1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;gap:8px;cursor:pointer;transition:opacity .2s}
+.nav-logo:hover{opacity:.8}
 .nav-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.55)}}
 .nav-links{display:flex;gap:30px;list-style:none}
@@ -245,6 +256,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:16px 52px;display:fl
 .success-msg{font-size:13px;color:var(--muted);line-height:1.75}
 .success-highlight{display:inline-block;margin-top:14px;padding:14px 20px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:14px;font-size:13px;font-weight:600;color:#6EE7B7;line-height:1.6}
 
+/* ── ONLY CHANGE: clickable logo style ── */
+.logo-link{cursor:pointer;transition:opacity .2s}
+.logo-link:hover{opacity:.8}
+
 footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;z-index:1}
 .foot-logo{font-size:18px;font-weight:800;background:var(--warm1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .foot-links{display:flex;gap:24px}
@@ -283,14 +298,17 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
 <div class="urgency">🔥 Early Adopter Spots Closing Soon — <span>Only 1 showroom</span> gets the free 90-day pilot. Don't miss it.</div>
 
 <nav id="main-nav">
-  <div class="nav-logo"><div class="nav-dot"></div>AURA</div>
+  <!-- ── CHANGE 1: nav logo now clickable → scrolls to top/hero ── -->
+  <div class="nav-logo logo-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <div class="nav-dot"></div>AURA
+  </div>
   <ul class="nav-links">
     <li><a onclick="goTo('sec-problem')">Why AURA</a></li>
     <li><a onclick="goTo('sec-platform')">Platform</a></li>
     <li><a onclick="goTo('sec-features')">Features</a></li>
     <li><a onclick="goTo('sec-pilot')">Free Pilot</a></li>
   </ul>
-  <button class="nav-cta" onclick="openModal()">Claim Free Pilot →</button>
+  <button class="nav-cta" onclick="trackCTA(); openModal()">Claim Free Pilot →</button>
 </nav>
 
 <section class="hero">
@@ -308,7 +326,7 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
     <p class="hero-sub">Imagine your entire team walking the floor with <strong>instant product knowledge</strong>, <strong>live competitor answers</strong>, and <strong>proven closing scripts</strong> — right in their pocket, right when the deal is on the line.</p>
     <div class="hero-hook">💡 <span>What if your newest advisor closed like your best one?</span><br>AURA makes that your daily reality — not the exception.</div>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="openModal()">🚀 Claim My Free 90-Day Pilot</button>
+      <button class="btn-primary" onclick="trackCTA(); openModal()">🚀 Claim My Free 90-Day Pilot</button>
       <button class="btn-outline" onclick="goTo('sec-how')">See How It Works</button>
     </div>
     <p class="hero-note"><span>✓ No IT setup</span> &nbsp;·&nbsp; <span>✓ No credit card</span> &nbsp;·&nbsp; <span>✓ Live in 24 hours</span></p>
@@ -326,7 +344,7 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
     <div class="video-label">▶ Watch the Explainer</div>
     <h2 class="video-title">See <span class="g">AURA in action</span> — 2 minutes<br>that could change how your team sells</h2>
     <p class="video-sub">Watch how AURA turns an ordinary sales floor into a high-conversion selling machine — one conversation at a time.</p>
-    <div class="video-frame-wrap">
+    <div class="video-frame-wrap" onclick="trackVideo()">
       <div class="video-responsive">
         <iframe
           src="https://www.youtube.com/embed/GSnWz-nLRAI?rel=0&modestbranding=1&color=white"
@@ -472,14 +490,15 @@ footer{background:var(--panel);border-top:1px solid var(--dim);padding:44px 52px
       <div class="pilot-offer"><div class="offer-dot"></div>Priority access when we expand</div>
     </div>
     <div class="pilot-cta-wrap">
-      <button class="btn-primary" onclick="openModal()" style="font-size:16px;padding:18px 48px">🚀 Claim My Free Pilot Now</button>
+      <button class="btn-primary" onclick="trackCTA(); openModal()" style="font-size:16px;padding:18px 48px">🚀 Claim My Free Pilot Now</button>
       <p class="social-proof">No credit card · No commitment beyond 90 days · <span>Only 1 spot available</span></p>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="foot-logo">AURA</div>
+  <!-- ── CHANGE 2: footer logo now clickable → scrolls to top/hero ── -->
+  <div class="foot-logo logo-link" onclick="window.scrollTo({top:0,behavior:'smooth'})">AURA</div>
   <div class="foot-links">
     <a onclick="goTo('sec-problem')">Why AURA</a>
     <a onclick="goTo('sec-platform')">Platform</a>
@@ -590,29 +609,21 @@ function resetForm() {
 }
 
 // ─── GOOGLE FORM SUBMISSION ───
-// Uses a persistent hidden iframe + dynamically built form POST.
-// Google Forms requires application/x-www-form-urlencoded — achieved via
-// a real HTML form submit (not fetch), which bypasses CORS entirely.
 function submitToGoogleForm(data) {
   const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse';
-
-  // Build the hidden form
   const form = document.createElement('form');
   form.method  = 'POST';
   form.action  = FORM_URL;
-  form.target  = 'gform-hidden'; // targets the persistent iframe already in the DOM
+  form.target  = 'gform-hidden';
   form.style.cssText = 'display:none;position:absolute;left:-9999px;top:-9999px;';
-
   const fields = {
-  'entry.1158063433': data.name,
-  'entry.476107339':  data.showroom,     // ✅ FIXED
-  'entry.1013057279': data.city,         // ✅ FIXED
-  'entry.1200513611': data.email,        // ✅ FIXED
-  'entry.1949582725': data.phone,        // ✅ FIXED
-  'entry.1618563540': data.role,         // ✅ FIXED
-  'entry.1798470370': data.channel       // ✅ already correct
-};
-
+    'entry.1158063433': data.name,
+    'entry.476107339':  data.role,
+    'entry.1013057279': data.showroom,
+    'entry.1200513611': data.city,
+    'entry.1949582725': data.email,
+    'entry.1618563540': data.phone
+  };
   Object.entries(fields).forEach(([name, value]) => {
     const inp = document.createElement('input');
     inp.type  = 'hidden';
@@ -620,22 +631,15 @@ function submitToGoogleForm(data) {
     inp.value = value || '';
     form.appendChild(inp);
   });
-
-  // Must append to body BEFORE calling submit()
   document.body.appendChild(form);
   form.submit();
-
-  // Clean up the temporary form after it has submitted
-  setTimeout(() => {
-    if (form.parentNode) form.parentNode.removeChild(form);
-  }, 3000);
+  setTimeout(() => { if (form.parentNode) form.parentNode.removeChild(form); }, 3000);
 }
 
 // ─── FORM SUBMIT ───
 function submitForm() {
   const required = ['f-name','f-role','f-showroom','f-channel','f-city','f-email','f-phone'];
   let allValid = true;
-
   required.forEach(id => {
     const el = document.getElementById(id);
     if (!el.value.trim()) {
@@ -647,10 +651,7 @@ function submitForm() {
       el.style.boxShadow   = '';
     }
   });
-
   if (!allValid) return;
-
-  // Collect values
   const data = {
     name:     document.getElementById('f-name').value.trim(),
     role:     document.getElementById('f-role').value,
@@ -660,22 +661,16 @@ function submitForm() {
     email:    document.getElementById('f-email').value.trim(),
     phone:    document.getElementById('f-phone').value.trim()
   };
-
-  // Disable button and show spinner
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Submitting…';
-
-  // POST to Google Form via hidden iframe
+  if(typeof gtag !== 'undefined'){
+    gtag('event', 'form_submit', { event_category: 'conversion', event_label: 'Lead Generated' });
+  }
   submitToGoogleForm(data);
-
-  // Show success screen after brief delay (allows form.submit() to fire)
   setTimeout(() => {
     document.getElementById('modal-form').style.display    = 'none';
     document.getElementById('modal-success').style.display = 'block';
-
-    // Auto-reset form fields after showing success for 4 seconds,
-    // then restore the form view (ready for the next visitor)
     setTimeout(() => {
       resetForm();
       document.getElementById('modal-form').style.display    = 'block';
@@ -705,6 +700,34 @@ function pickQ(el, correct) {
     Object.assign(el.style, { borderColor:'#EF4444', color:'#EF4444', background:'rgba(239,68,68,.07)' });
     Object.assign(fb.style, { display:'block', background:'rgba(239,68,68,.07)', borderColor:'rgba(239,68,68,.25)', color:'#FCA5A5' });
     fb.textContent = 'Not quite — Celerio CNG at 35.60 km/kg is the answer.';
+  }
+}
+
+// ─── CTA TRACKING ───
+function trackCTA(){
+  if(typeof gtag !== 'undefined'){
+    gtag('event', 'cta_click', { event_category: 'engagement', event_label: 'Free Pilot CTA' });
+  }
+}
+
+// ─── SCROLL DEPTH TRACKING ───
+let scrollTracked50 = false, scrollTracked90 = false;
+window.addEventListener('scroll', () => {
+  const scroll = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  if(scroll > 0.5 && !scrollTracked50){
+    scrollTracked50 = true;
+    if(typeof gtag !== 'undefined') gtag('event', 'scroll_50', { event_category: 'engagement' });
+  }
+  if(scroll > 0.9 && !scrollTracked90){
+    scrollTracked90 = true;
+    if(typeof gtag !== 'undefined') gtag('event', 'scroll_90', { event_category: 'engagement' });
+  }
+});
+
+// ─── VIDEO TRACKING ───
+function trackVideo(){
+  if(typeof gtag !== 'undefined'){
+    gtag('event', 'video_view', { event_category: 'engagement', event_label: 'Explainer Video' });
   }
 }
 </script>
