@@ -608,6 +608,29 @@ function resetForm() {
   btn.innerHTML = '🚀 Claim My Free 90-Day Pilot';
 }
 
+// ─── GOOGLE FORM SUBMISSION (Chrome/Mobile Safe)  Added on 26-Apr ───
+function submitToGoogleForm(data) {
+  const formURL = "https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse";
+
+  const formData = new FormData();
+
+  formData.append("entry.1158063433", data.name);
+  formData.append("entry.476107339", data.showroom);
+  formData.append("entry.1013057279", data.city);
+  formData.append("entry.1200513611", data.email);
+  formData.append("entry.1949582725", data.phone);
+  formData.append("entry.1618563540", data.role);
+  formData.append("entry.1798470370", data.channel);
+
+  fetch(formURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  });
+}
+
+
+/* commented 26-Apr to replace with above code Chrome/Mobile compatible
 // ─── GOOGLE FORM SUBMISSION ───
 function submitToGoogleForm(data) {
   const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrQa53QpEfsGLBauiPupZEs-4HH6g9gE3vjRS80dRcVaHJAA/formResponse';
@@ -637,6 +660,7 @@ function submitToGoogleForm(data) {
   form.submit();
   setTimeout(() => { if (form.parentNode) form.parentNode.removeChild(form); }, 3000);
 }
+*/
 
 // ─── FORM SUBMIT ───
 function submitForm() {
